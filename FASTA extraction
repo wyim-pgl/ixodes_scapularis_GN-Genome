@@ -1,0 +1,25 @@
+#Language: python
+#Packages required: Biopython
+#links:https://biopython.org/wiki/Download
+
+#Please rename wanted and outpute files to your specifications
+
+from Bio import SeqIO
+wanted_filename = "nomatchrr.txt"           #Vertical list of sequence IDs with ">" i.e.
+input_filename = "nodupfixiscapaa.fasta"                    #iscapaa formated file without any linebreak for all the fasta sequences 
+output_filename = "rrnomatch.fasta"               #output file containing the only the select fasta sequences for the sequence ID from f2 list
+count = 0
+total = 0
+output_handle = open(output_filename, "w")
+
+with open(wanted_filename) as f:                         # added lines to
+    wanted_ids = [l[1:-1] for l in f]                    # build list of ids
+# now wanted_ids 
+
+for record in SeqIO.parse(input_filename, "fasta"):
+    total = total + 1
+    if record.id in wanted_ids:
+        count = count + 1
+        SeqIO.write(record, output_handle, "fasta")
+output_handle.close()
+print(str(count) + " records selected out of " + str(total))        #Will display amount of sequences extract from original fasta file
