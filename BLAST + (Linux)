@@ -1,0 +1,23 @@
+Linux
+
+NCBI provides command line standalone BLAST+ programs (based on the NCBI C++ toolkit) as a single compressed package. The package is available for the Linux, Mac OSX, and Windows platforms at:
+
+https://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/
+
+The archives for Linux and Mac OSX are available as gzip-compressed tar files named using the following convention:
+
+#Installation
+tar zxvpf ncbi-blast-2.13.0+-x64-linux.tar.gz
+
+#Making local database
+
+makeblastdb -in fixiscapaa.fasta -parse_seqids -blastdb_version 5 -taxid_map test_map.txt -title "ISCGN genome" -dbtype prot
+
+makeblastdb -in fixiscapaa.fasta -parse_seqids -blastdb_version 5 -title "dupcontainingiscap genome" -dbtype prot
+
+blastp -query iscaprr2nodup.fasta -db iscaprr2nodup.fasta -out proteins_blastp.txt
+
+blastp -query iscaprr2nodup.fasta -db iscaprr2nodup.fasta -out proteins_blastp_1align.txt -num_alignments 1
+
+#how to a protein fasta blast using local databases, the num_alignments will give the number of return target per query
+blastp -query neuropep.fasta -db nodupfixiscapaa.fasta -out Neuropep2.txt -num_alignments 1 -evalue 1e-10 -outfmt 6
