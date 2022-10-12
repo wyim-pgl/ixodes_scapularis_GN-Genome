@@ -43,5 +43,6 @@ https://nevada.app.box.com/file/920377643276
 After running `run.sh` description file `database/VectorBase-59_IscapularisWikel_description.txt` will be generated.
 
 ## FASTA extraction
-```                                                                                                                                              seqkit grep -f example/ISCGN_ID_LIST.txt database/ISCGN_v2_101122.aa -o example/ISCGN_ID_LIST.fasta
+```
+seqkit grep -f example/ISCGN_ID_LIST.txt database/ISCGN_v2_101122.aa -o example/ISCGN_ID_LIST.fasta
 ```
